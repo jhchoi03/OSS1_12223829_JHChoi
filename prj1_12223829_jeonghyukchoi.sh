@@ -125,8 +125,8 @@ do
 		if [[ $reply2 = "y" ]]
 		then
 			ddd=$(awk '{print $1 "|" $2 "|" $3 }' "$2" | sort -n)
-			echo "$ddd" | awk -F '|' 'FNR==NR && $2 >= 20 && $2 <= 29 && $4 == "programmer" { tmp[$1]=1; next }
-FNR!=NR && $1 in tmp { tmp2[$2]+=$3; tmp3[$2]++ } END { for (i in tmp2) print i, tmp2[i]/tmp3[i] }' "$3" -
+			echo "$ddd" | awk -F '|' ' $2 >= 20 && $2 <= 29 && $4 == "programmer" { tmp[$1]=1; next }
+$1 in tmp { tmp2[$2]+=$3; tmp3[$2]++ } END { for (i in tmp2) print i, tmp2[i]/tmp3[i] }' "$3" -
 			echo
 
 		fi
